@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:grocery_task/common/domain/category.dart';
 import 'package:grocery_task/common/domain/product_badge.dart';
 
@@ -22,4 +23,15 @@ class Product {
   final int colorValue;
 
   final ProductBadge? badge;
+
+  factory Product.fromFirestore(DocumentSnapshot doc) {
+    final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return Product(
+      name: doc.id,
+      description: data["description"],
+      price: data["price"].toDouble(),
+      imageAsset: data["imageAsset"],
+      colorValue: data["colorValue"],
+    );
+  }
 }

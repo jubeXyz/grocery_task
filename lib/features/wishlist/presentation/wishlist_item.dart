@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_task/common/constants.dart';
 import 'package:grocery_task/common/domain/product.dart';
 import 'package:grocery_task/common/presentation/cart_controller.dart';
 import 'package:grocery_task/common/presentation/wishlist_controller.dart';
@@ -24,7 +25,7 @@ class WishlistItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(itemBorderRadius),
       ),
       child: Stack(children: [
         if (product.badge != null)
@@ -35,8 +36,8 @@ class WishlistItem extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: Color(product.badge!.colorValue).withOpacity(0.2),
-                borderRadius:
-                    const BorderRadius.only(topLeft: Radius.circular(10)),
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(itemBorderRadius)),
               ),
               child: Text(
                 product.badge!.name,
